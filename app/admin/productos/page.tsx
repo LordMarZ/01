@@ -80,58 +80,64 @@ export default async function AdminProductosPage({
         </aside>
 
         <div className="flex-1">
-          <form
-            action={upsertProduct}
-            className="grid grid-cols-1 gap-3 rounded-lg border border-white/10 bg-white/5 p-4 sm:grid-cols-2"
-          >
-            <input
-              name="name"
-              required
-              placeholder="Nombre"
-              className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
-            />
-            <select
-              name="category_id"
-              className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
-              defaultValue={activeCategory?.id ?? ""}
+          <details className="group rounded-lg border border-white/10 bg-white/5">
+            <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-medium">
+              + Agregar producto
+              <span className="text-white/50 transition group-open:rotate-180">⌄</span>
+            </summary>
+            <form
+              action={upsertProduct}
+              className="grid grid-cols-1 gap-3 border-t border-white/10 p-4 sm:grid-cols-2"
             >
-              <option value="">Sin categoría</option>
-              {cats.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-            <input
-              name="price"
-              type="number"
-              step="0.01"
-              min="0"
-              required
-              placeholder="Precio"
-              className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
-            />
-            <input
-              name="stock"
-              type="number"
-              min="0"
-              required
-              placeholder="Stock"
-              className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
-            />
-            <ProductImageUpload />
-            <textarea
-              name="description"
-              placeholder="Descripción"
-              className="rounded border border-white/20 bg-black px-3 py-2 text-sm sm:col-span-2"
-            />
-            <label className="flex items-center gap-2 text-sm">
-              <input type="checkbox" name="active" defaultChecked /> Activo
-            </label>
-            <button className="rounded bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 sm:col-span-2">
-              Agregar producto
-            </button>
-          </form>
+              <input
+                name="name"
+                required
+                placeholder="Nombre"
+                className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
+              />
+              <select
+                name="category_id"
+                className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
+                defaultValue={activeCategory?.id ?? ""}
+              >
+                <option value="">Sin categoría</option>
+                {cats.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+              <input
+                name="price"
+                type="number"
+                step="0.01"
+                min="0"
+                required
+                placeholder="Precio"
+                className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
+              />
+              <input
+                name="stock"
+                type="number"
+                min="0"
+                required
+                placeholder="Stock"
+                className="rounded border border-white/20 bg-black px-3 py-2 text-sm"
+              />
+              <ProductImageUpload />
+              <textarea
+                name="description"
+                placeholder="Descripción"
+                className="rounded border border-white/20 bg-black px-3 py-2 text-sm sm:col-span-2"
+              />
+              <label className="flex items-center gap-2 text-sm">
+                <input type="checkbox" name="active" defaultChecked /> Activo
+              </label>
+              <button className="rounded bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 sm:col-span-2">
+                Agregar producto
+              </button>
+            </form>
+          </details>
 
           <ul className="mt-6 divide-y divide-white/10 rounded-lg border border-white/10">
             {visibleProducts.map((product) => (
