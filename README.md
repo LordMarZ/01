@@ -4,6 +4,14 @@ Next.js (App Router) + Supabase. Esquema de base de datos aislado en `darkside_b
 dentro del proyecto Supabase compartido "Darkside Cafe" (no toca las tablas de
 las otras tiendas que viven en ese mismo proyecto).
 
+## Producción
+
+- URL pública: https://pedidosbros.vercel.app/
+- Admin: https://pedidosbros.vercel.app/admin (login con Google, cuenta
+  `darksidebroscoleccionables@gmail.com`)
+- Hospedado en Vercel. El despliegue inicial se hizo manualmente desde el dashboard
+  de Vercel (sin pasar por una PR), con las variables de entorno descritas abajo.
+
 ## Configuración requerida en Supabase (una sola vez)
 
 1. **Exponer el schema en la Data API**: Project Settings → Data API →
