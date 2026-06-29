@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 const BUCKET = "darkside_bros-products";
@@ -12,13 +12,17 @@ export default function ProductImageUpload({
   name?: string;
   defaultValue?: string | null;
 }) {
+  const inputId = useId();
   const [imageUrl, setImageUrl] = useState(defaultValue ?? "");
   const [uploading, setUploading] = useState(false);
+  const [dragging, setDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  async function uploadFile(file: File) {
+    if (!file.type.startsWith("image/")) {
+      setError("El archivo debe ser una imagen.");
+      return;
+    }
 
     setUploading(true);
     setError(null);
@@ -42,6 +46,18 @@ export default function ProductImageUpload({
     setUploading(false);
   }
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) void uploadFile(file);
+  }
+
+  function handleDrop(e: React.DragEvent<HTMLLabelElement>) {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) void uploadFile(file);
+  }
+
   return (
     <div className="flex items-center gap-3 sm:col-span-2">
       <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded border border-white/20 bg-black">
@@ -53,13 +69,29 @@ export default function ProductImageUpload({
         )}
       </div>
       <div className="flex flex-1 flex-col gap-1">
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="text-xs text-white/70"
-        />
-        {uploading && <p className="text-xs text-white/50">Subiendo...</p>}
+        <label
+          htmlFor={inputId}
+          onDragOver={(e) => {
+            e.preventDefault();
+            setDragging(true);
+          }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={handleDrop}
+          className={`flex cursor-pointer items-center justify-center rounded border px-3 py-2 text-xs transition ${
+            dragging
+              ? "border-white bg-white/10 text-white"
+              : "border-dashed border-white/30 text-white/60 hover:border-white/60"
+          }`}
+        >
+          {uploading ? "Subiendo..." : "Arrastra una imagen aquí o haz clic para elegir"}
+          <input
+            id={inputId}
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+        </label>
         {error && <p className="text-xs text-red-400">{error}</p>}
       </div>
       <input type="hidden" name={name} value={imageUrl} />
