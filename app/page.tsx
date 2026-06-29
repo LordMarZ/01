@@ -36,9 +36,9 @@ export default async function HomePage({
     <>
       <SiteHeader />
       <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8">
-        <h1 className="text-3xl font-bold tracking-tight">Catálogo</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Menú</h1>
         <p className="mt-1 text-sm text-white/60">
-          Coleccionables Darkside Bros. Agrega lo que quieras y coordinamos tu pedido.
+          Darkside Café. Agrega lo que quieras y coordinamos tu pedido.
         </p>
 
         {!!categories?.length && (

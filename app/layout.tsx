@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Darkside Bros Coleccionables",
-  description: "Catálogo y pedidos de Darkside Bros Coleccionables",
+  title: "Darkside Café",
+  description: "Menú y pedidos de Darkside Café",
 };
 
 export default function RootLayout({
