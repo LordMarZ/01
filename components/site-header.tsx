@@ -10,7 +10,7 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-10 border-b border-white/10 bg-neutral-950/90 backdrop-blur">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
         <Link href="/" className="font-bold tracking-tight">
-          Darkside Bros
+          Darkside Café
         </Link>
         <Link
           href="/carrito"

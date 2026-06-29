@@ -1,4 +1,4 @@
-# Darkside Bros — catálogo, carrito y panel admin
+# Darkside Café — catálogo, carrito y panel admin
 
 Next.js (App Router) + Supabase. Esquema de base de datos aislado en `darkside_bros`
 dentro del proyecto Supabase compartido "Darkside Cafe" (no toca las tablas de

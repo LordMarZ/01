@@ -10,7 +10,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="min-h-screen bg-neutral-950 text-white">
       <header className="flex items-center justify-between border-b border-white/10 px-6 py-4">
         <div className="flex items-center gap-6">
-          <span className="font-bold tracking-tight">Darkside Bros · Admin</span>
+          <span className="font-bold tracking-tight">Darkside Café · Admin</span>
           <nav className="flex gap-4 text-sm text-white/70">
             <Link href="/admin" className="hover:text-white">
               Resumen
